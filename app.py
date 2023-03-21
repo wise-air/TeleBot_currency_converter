@@ -35,7 +35,7 @@ def callback_func(query):
 
     if data == '=':
         try:
-            values1 = InlineKeyboard.value.split(' ')
+            values1 = InlineKeyboard.value.split()
             quote, base, amount = values1
             total_base = CryptoConverter.get_price(quote.lower(), base.lower(), amount)
             exch = float(total_base) * float(amount)
@@ -65,7 +65,7 @@ def callback_func(query):
 @bot.message_handler(content_types=['text', ])
 def convert(message: telebot.types.Message):
     try:
-        values = message.text.split(' ')
+        values = message.text.split()
         if len(values) != 3:
             raise ConvertionExeption('Вы ввели лишние или  недостаточные параметры! Повторите запрос')
 
